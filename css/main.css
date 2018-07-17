@@ -1,0 +1,252 @@
+:root {
+  --white: white;
+  --black: black;
+  --gray: #c9c9c9;
+  --main-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+}
+
+.container {
+  /* display: grid; */
+  /* grid-gap: 10px; */
+}
+
+ul#header-menu {
+  display: grid;
+  grid-gap: 10px;
+  padding: 0;
+  margin: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  list-style: none;
+}
+
+#header-menu li a {
+  background: var(--gray);
+  display: block;
+  text-decoration: none;
+  padding: 10px;
+  text-align: center;
+  color: var(--white);
+  font-family: var(--main-font);
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.content-wrapper {
+  margin: 10px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 200px;
+  grid-auto-flow: dense;
+}
+
+.item {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+}
+
+.item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item .about {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  color: var(--white);
+  background: -webkit-linear-gradient(top,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 95%);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-auto-flow: row;
+  font-family: var(--main-font);
+  font-size: 1.1em;
+}
+
+.about__header {
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 50px;
+}
+
+.about__header .title {
+  justify-self: start;
+  padding: 0px 10px;
+}
+
+.about__header .price {
+  justify-self: end;
+  padding: 0px 10px;
+}
+
+.about__footer {
+  display: grid;
+  background: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.7) 75%);
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px;
+}
+
+.description {
+  padding: 0px 10px;
+  font-size: 0.7em;
+  line-height: 1.2em;
+  font-weight: 100;
+  font-smoothing: antialiased;
+  opacity: 0.7;
+  position: relative;
+  right:0;
+  bottom:0;
+  display: grid;
+  align-self: baseline;
+  padding: 10px;
+}
+
+.item .about {
+  transition: 0.5s;
+  transform: translateY(0%);
+}
+.item:hover .about {
+  transform: translateY(-150%);
+}
+
+.item.no-footer .about {
+  transform: none;
+}
+
+/* ****************************** */
+/* Image slider. No jquery YEEEE! */
+/* ****************************** */
+
+.item .slider img {
+  position: absolute;
+  transition: all 0.4s;
+}
+
+.item .slider img.active {
+
+}
+
+/* slide directions */
+/* tbt - top to bottom to top */
+.item .slider.tbt img { margin-top: -100%; }
+.item .slider.tbt img.active { margin-top: 0; }
+/* lrl - left to right to left */
+.item .slider.lrl img { margin-left: -100%; }
+.item .slider.lrl img.active { margin-left: 0; }
+
+
+/*************************/
+/* grid items variations */
+/*************************/
+.small {
+  grid-row: span 1;
+  grid-column: span 1;
+}
+
+.medium {
+  grid-row: span 2;
+  grid-column: span 2;
+}
+
+.large {
+  grid-row: span 3;
+  grid-column: span 3;
+}
+
+.tall {
+  grid-row: span 3;
+}
+
+.tall {
+  grid-row: span 3;
+}
+
+.short {
+  grid-column: span 1;
+}
+
+.wide {
+  grid-column: span 3;
+}
+
+.full {
+  grid-column: -1 / 1;
+}
+
+/*******************************/
+/* plain text with color tiles */
+/*******************************/
+
+.item.splash-text-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.item.splash-text-center .text {
+  color: var(--white);
+  font-family: var(--main-font);
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+}
+
+.item.image-text-center {
+
+}
+
+.item.image-text-center .text{
+  color: var(--white);
+  text-shadow: 1px 1px 30px #888;
+  font-family: var(--main-font);
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+  padding: 10px;
+  position:absolute;
+  display: grid;
+  align-self: center;
+  justify-self: center;
+}
+
+/*****************/
+/* media queries */
+/*****************/
+
+@media (max-width: 1000px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .item {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+
+}
+
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .item {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .item {
+    grid-row: span 1;
+    grid-column: span 1;
+  }
+}
