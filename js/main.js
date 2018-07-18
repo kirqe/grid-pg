@@ -21,7 +21,7 @@ function randomColor() {
 function switchSlide(slider) {
   let imgs = slider.querySelectorAll("img");
   let interval = ((Math.floor(Math.random() * 7) + 3) * 1000);
-  console.log(interval);
+  // console.log(interval);
   let currSlide = 0;
 
   setInterval(() => {
@@ -55,6 +55,22 @@ function close() {
   overlay.classList.remove('open')
 }
 
+// truncate description from overlays of gallery items
+function truncateDescription(item) {
+  const desc = item.querySelector(".description");
+  var truncated = ""
+  const tr = {
+    'small': 150,
+    'medium': 300,
+    'wide': 500
+  }
+  for (var key in tr) {
+    if (item.classList.contains(key)) {
+      return desc.innerText.substring(0, tr[key]) + "..."
+    }
+  }
+}
+
 // looping through all the tiles on a page to do some manipulations
 items.forEach((item, i) => {
   const desc = item.querySelector(".description");
@@ -68,6 +84,7 @@ items.forEach((item, i) => {
     if (desc.firstChild === null || desc.firstChild.nodeValue < 1) {
       item.classList.add("no-footer");
     }
+    desc.innerText = truncateDescription(item);
   }
 
   // random backgroundColor for plain text tiles
