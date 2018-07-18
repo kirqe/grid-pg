@@ -1,8 +1,10 @@
+@import "https://fonts.googleapis.com/css?family=Open+Sans";
+
 :root {
   --white: white;
   --black: black;
   --gray: #c9c9c9;
-  --main-font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --main-font: 'Open Sans', sans-serif;
 }
 
 .container {
@@ -121,6 +123,78 @@ ul#header-menu {
   transform: none;
 }
 
+/* overlay  */
+
+.overlay {
+  position: fixed;
+  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  z-index: 2;
+}
+
+.overlay.open {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+}
+
+.overlay .overlay-inner {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  background: white;
+  width: 800px;
+}
+.overlay-inner-item {
+  position: relative;
+}
+.overlay .overlay-inner .overlay-inner-item {
+
+}
+.overlay .overlay-inner .overlay-inner-item .overlay-title {
+  font-style: var(--main-font);
+}
+.overlay .overlay-inner .overlay-inner-item .overlay-description {
+  font-style: var(--main-font);
+  font-size: 0.9em;
+}
+
+
+.overlay img {
+  width: 100%;
+  display: block;
+}
+
+.overlay button {
+  font-style: var(--main-font);
+  font-size: 0.8em;
+  background: none;
+  border: 2px solid black;
+  text-transform: uppercase;
+  padding: 5px 10px;
+
+}
+.overlay button:hover {
+  background: black;
+  color: white;
+  transition: all 0.3s;
+}
+
+.overlay-footer {
+  position: absolute;
+  left: 0;
+  bottom: 20px;
+  display: flex;
+  grid-gap: 10px;
+  /* grid-template-columns: repeat(5, 1fr); */
+}
+.overlay-footer .item{
+    margin-right: 10px;
+}
 /* ****************************** */
 /* Image slider. No jquery YEEEE! */
 /* ****************************** */

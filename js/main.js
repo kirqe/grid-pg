@@ -1,4 +1,14 @@
 const items = document.querySelectorAll(".item")
+const overlay = document.querySelector('.overlay')
+const overlayImage = overlay.querySelector('img')
+const overlayTitle = overlay.querySelector('.overlay-title')
+const overlayPrice = overlay.querySelector('.overlay-price')
+const overlayDescription = overlay.querySelector('.overlay-description')
+const overlayClose = overlay.querySelector('.close')
+
+overlayClose.addEventListener('click', close);
+overlay.addEventListener('click', close);
+
 
 // random colors for spash + text tiles
 function randomColor() {
@@ -21,10 +31,35 @@ function switchSlide(slider) {
   }, interval);
 }
 
+// overlay
+function showDetailsOverlay(e) {
+  const src = e.currentTarget.querySelector('img');
+  const description = e.currentTarget.querySelector('.description');
+
+  const title = e.currentTarget.querySelector('.title');
+  const price = e.currentTarget.querySelector('.price');
+  if (src) {
+    overlayImage.src = src.src;
+    overlayTitle.innerHTML = title.textContent;
+    overlayPrice.innerHTML = price.textContent;
+    overlayDescription.innerHTML = (
+      description == null
+    ) ? "no description" : description.textContent
+    overlay.classList.add('open');
+  }
+
+}
+
+// close overlay
+function close() {
+  overlay.classList.remove('open')
+}
+
 // looping through all the tiles on a page to do some manipulations
 items.forEach((item, i) => {
   const desc = item.querySelector(".description");
   const sliders = item.querySelectorAll('.slider');
+  item.addEventListener('click', showDetailsOverlay);
 
   // make description overlay static if it is empty
   if (desc === null) {
